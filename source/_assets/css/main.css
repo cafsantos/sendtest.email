@@ -1,0 +1,11 @@
+@import "tailwindcss/preflight";
+
+@import "tailwindcss/components";
+
+@import "codemirror/theme/material";
+@import "codemirror/lib/codemirror";
+@import "sweetalert2/dist/sweetalert2";
+
+@import "custom";
+
+@import "tailwindcss/utilities";

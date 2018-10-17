@@ -1,0 +1,65 @@
+[v-cloak] {
+    @apply hidden;
+}
+
+.bg-swirl {
+    background: #1d976c;
+    background: linear-gradient(to right, rgba(29, 151, 108, 0.85), rgba(147, 249, 185, 0.85)), url(/assets/img/swirl.png);
+}
+
+.CodeMirror {
+    height: calc(100% - 2px) !important;
+    cursor: text;
+}
+
+.CodeMirror-code {
+    @apply leading-normal;
+}
+
+.gutter {
+    @apply bg-grey-light flex items-center;
+    cursor: e-resize;
+}
+
+.gutter-horizontal::before {
+    @apply text-grey bg-grey-lightest border border-grey-light border-solid text-center rounded z-50;
+    content: '⋮';
+    margin-left: -3px;
+    padding: 12px 2px;
+    text-orientation: mixed;
+    word-break: break-all;
+}
+
+.gutter-horizontal:hover {
+    @apply bg-grey;
+}
+
+.gutter-horizontal:hover::before {
+    @apply text-grey-dark border-grey;
+}
+
+/* Forms */
+
+.error {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border-color:rgba(0, 0, 0, 0.3) !important;
+}
+
+.form-input {
+    @apply w-full p-2 leading-none bg-transparent outline-none text-white border-b border-green-lightest;
+}
+
+.form-input::placeholder {
+    @apply text-white opacity-100;
+}
+
+.form-input:focus {
+    @apply border-green-lighter;
+}
+
+/* iFrame */
+
+.iframe-width {
+    @apply absolute mb-20 ml-6 pin-b px-3 py-2 rounded text-white text-xs;
+    background-color: rgba(0,0,0,0.5);
+}

@@ -1,0 +1,9 @@
+[build]
+
+functions = "./functions"
+publish = "build_production"
+command = "npm run production && npm run build:lambda"
+
+[build.environment]
+
+PHP_VERSION="7.2"

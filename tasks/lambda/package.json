@@ -1,0 +1,9 @@
+{
+  "name": "functions",
+  "description": "Netlify functions",
+  "dependencies": {
+    "babel-loader": "^8.0.4",
+    "sparkpost": "^2.1.2"
+  },
+  "private": true
+}
