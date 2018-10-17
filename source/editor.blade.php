@@ -1,12 +1,11 @@
 ---
 title: Editor - SendTest.Email | Test send your HTML email
-description: Basic online HTML email code editor, with file size and responsive layout previews.
+description: Basic online HTML email code editor, with file size and responsive layout previews. Preview, edit, and test send your email layout.
 ---
 
 @extends('_layouts.master')
 
 @section('content')
-
 <div id="app">
     <div class="h-screen">
         <div class="flex w-full bg-swirl">
@@ -58,5 +57,8 @@ description: Basic online HTML email code editor, with file size and responsive 
         </div>
     </div>
 </div>
-
 @endsection
+
+@push('scripts')
+<script src="{{ mix('/js/main.js') }}"></script>
+@endpush()
