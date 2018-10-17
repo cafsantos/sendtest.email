@@ -24,6 +24,6 @@
     </head>
     <body class="antialiased font-sans">
         @yield('content')
-        <script src="{{ mix('/js/main.js') }}"></script>
+        @stack('scripts')
     </body>
 </html>

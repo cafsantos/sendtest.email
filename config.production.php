@@ -2,6 +2,6 @@
 
 return [
     'baseUrl' => 'https://sendtest.email',
-    'production' => false,
+    'production' => true,
     'collections' => [],
 ];
