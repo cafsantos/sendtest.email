@@ -23,23 +23,23 @@ description: Basic online HTML email code editor, with file size and responsive 
                     </a>
                 </span>
             </div>
-            <div class="flex items-center w-1/2 py-3 px-4 border-b-4 border-transparent">
-                <div class="w-2/5 px-2">
+            <div class="flex flex-wrap items-center justify-between w-1/2 py-3 px-4 border-b-4 border-transparent">
+                <div class="w-4/5 xl:w-1/3 px-1">
                     <input type="text" class="hidden" id="from" value="">
                     <input type="text" id="url" value="https://sendtest.email" v-cloak :class="['hidden']">
                     <input type="email" v-model="message.recipient" class="form-input" :class="{'error' : errors.recipient}" placeholder="To:">
                 </div>
-                <div class="w-full px-2">
+                <div class="w-4/5 xl:w-2/5 px-1">
                     <input type="text" v-model="message.subject" class="form-input" :class="{'error' : errors.subject}" placeholder="Subject:">
                 </div>
-                <div class="w-2/5 text-right mt-1">
+                <div class="flex justify-end w-1/5">
                     <button
                         v-cloak
                         @click="handleSubmit"
-                        v-text="buttonText"
+                        v-html="buttonText"
                         :class="{'opacity-50 pointer-events-none' : sending}"
-                        class="px-6 py-3 text-green bg-white shadow hover:shadow-md text-xs uppercase rounded focus:outline-none">
-                        Send Test &rarr;
+                        class="px-4 py-2 xl:px-6 xl:py-3 text-green bg-white shadow hover:shadow-md text-xs uppercase rounded focus:outline-none">
+                        Send <span class="hidden xl:inline">Test</span> &rarr;
                     </button>
                 </div>
             </div>
@@ -47,7 +47,7 @@ description: Basic online HTML email code editor, with file size and responsive 
         <div class="fixed flex flex-wrap h-full w-full">
             <div id="editor" class="w-1/2 h-full">
                 <div class="h-full">
-                    <codemirror :value="message.html" :options="options" @input="updateHTML" class="h-full text-sm pb-16 bg-cm-black"></codemirror>
+                    <codemirror :value="message.html" :options="options" @input="updateHTML" class="h-full text-sm pb-24 xl:pb-16 bg-cm-black"></codemirror>
                 </div>
             </div>
             <div id="preview" class="w-1/2 h-full bg-white">

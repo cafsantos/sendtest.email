@@ -46,7 +46,7 @@
 }
 
 .form-input {
-    @apply w-full p-2 leading-none bg-transparent outline-none text-white border-b border-green-lightest;
+    @apply w-full p-2 text-sm leading-none bg-transparent outline-none text-white border-b border-green-lightest;
 }
 
 .form-input::placeholder {
