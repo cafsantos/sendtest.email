@@ -29203,7 +29203,6 @@ new Vue({
         subject: '',
         html: ''
       },
-      buttonText: 'Send test →',
       errors: {
         recipient: false,
         subject: false
@@ -29343,6 +29342,13 @@ new Vue({
       }
 
       return 'text-white';
+    },
+    buttonText: function buttonText() {
+      if (this.sending) {
+        return 'Sending...';
+      }
+
+      return 'Send <span class="hidden xl:inline">Test</span> →';
     }
   }
 });

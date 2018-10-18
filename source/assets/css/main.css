@@ -2748,6 +2748,7 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 .form-input {
   width: 100%;
   padding: .5rem;
+  font-size: .875rem;
   line-height: 1;
   background-color: transparent;
   outline: 0;
@@ -5912,6 +5913,10 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
   padding: 4rem;
 }
 
+.p-24 {
+  padding: 6rem;
+}
+
 .p-px {
   padding: 1px;
 }
@@ -6004,6 +6009,16 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 .px-16 {
   padding-left: 4rem;
   padding-right: 4rem;
+}
+
+.py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.px-24 {
+  padding-left: 6rem;
+  padding-right: 6rem;
 }
 
 .py-px {
@@ -6158,6 +6173,22 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 
 .pl-16 {
   padding-left: 4rem;
+}
+
+.pt-24 {
+  padding-top: 6rem;
+}
+
+.pr-24 {
+  padding-right: 6rem;
+}
+
+.pb-24 {
+  padding-bottom: 6rem;
+}
+
+.pl-24 {
+  padding-left: 6rem;
 }
 
 .pt-px {
@@ -10385,6 +10416,10 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
     padding: 4rem;
   }
 
+  .sm\:p-24 {
+    padding: 6rem;
+  }
+
   .sm\:p-px {
     padding: 1px;
   }
@@ -10477,6 +10512,16 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
   .sm\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
+  }
+
+  .sm\:py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  .sm\:px-24 {
+    padding-left: 6rem;
+    padding-right: 6rem;
   }
 
   .sm\:py-px {
@@ -10631,6 +10676,22 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 
   .sm\:pl-16 {
     padding-left: 4rem;
+  }
+
+  .sm\:pt-24 {
+    padding-top: 6rem;
+  }
+
+  .sm\:pr-24 {
+    padding-right: 6rem;
+  }
+
+  .sm\:pb-24 {
+    padding-bottom: 6rem;
+  }
+
+  .sm\:pl-24 {
+    padding-left: 6rem;
   }
 
   .sm\:pt-px {
@@ -14851,6 +14912,10 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
     padding: 4rem;
   }
 
+  .md\:p-24 {
+    padding: 6rem;
+  }
+
   .md\:p-px {
     padding: 1px;
   }
@@ -14943,6 +15008,16 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
   .md\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
+  }
+
+  .md\:py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  .md\:px-24 {
+    padding-left: 6rem;
+    padding-right: 6rem;
   }
 
   .md\:py-px {
@@ -15097,6 +15172,22 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 
   .md\:pl-16 {
     padding-left: 4rem;
+  }
+
+  .md\:pt-24 {
+    padding-top: 6rem;
+  }
+
+  .md\:pr-24 {
+    padding-right: 6rem;
+  }
+
+  .md\:pb-24 {
+    padding-bottom: 6rem;
+  }
+
+  .md\:pl-24 {
+    padding-left: 6rem;
   }
 
   .md\:pt-px {
@@ -19317,6 +19408,10 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
     padding: 4rem;
   }
 
+  .lg\:p-24 {
+    padding: 6rem;
+  }
+
   .lg\:p-px {
     padding: 1px;
   }
@@ -19409,6 +19504,16 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
   .lg\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
+  }
+
+  .lg\:py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  .lg\:px-24 {
+    padding-left: 6rem;
+    padding-right: 6rem;
   }
 
   .lg\:py-px {
@@ -19563,6 +19668,22 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 
   .lg\:pl-16 {
     padding-left: 4rem;
+  }
+
+  .lg\:pt-24 {
+    padding-top: 6rem;
+  }
+
+  .lg\:pr-24 {
+    padding-right: 6rem;
+  }
+
+  .lg\:pb-24 {
+    padding-bottom: 6rem;
+  }
+
+  .lg\:pl-24 {
+    padding-left: 6rem;
   }
 
   .lg\:pt-px {
@@ -23783,6 +23904,10 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
     padding: 4rem;
   }
 
+  .xl\:p-24 {
+    padding: 6rem;
+  }
+
   .xl\:p-px {
     padding: 1px;
   }
@@ -23875,6 +24000,16 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
   .xl\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
+  }
+
+  .xl\:py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  .xl\:px-24 {
+    padding-left: 6rem;
+    padding-right: 6rem;
   }
 
   .xl\:py-px {
@@ -24029,6 +24164,22 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 
   .xl\:pl-16 {
     padding-left: 4rem;
+  }
+
+  .xl\:pt-24 {
+    padding-top: 6rem;
+  }
+
+  .xl\:pr-24 {
+    padding-right: 6rem;
+  }
+
+  .xl\:pb-24 {
+    padding-bottom: 6rem;
+  }
+
+  .xl\:pl-24 {
+    padding-left: 6rem;
   }
 
   .xl\:pt-px {
