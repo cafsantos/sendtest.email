@@ -44,13 +44,6 @@ new Vue({
     this.resetGutterPosition();
   },
   methods: {
-    updateHTML: function (html) {
-      this.message.html = html;
-      let iframe = document.documentElement.getElementsByClassName('iframe')[0];
-      iframe.contentWindow.document.open();
-      iframe.contentWindow.document.write(this.message.html);
-      iframe.contentWindow.document.close();
-    },
     splitReset: function () {
       splitPanes.setSizes([50, 50]);
     },
