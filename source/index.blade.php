@@ -47,12 +47,18 @@ description: Send your HTML email to a real inbox. Use this free tool to preview
         <div class="fixed flex flex-wrap h-full w-full">
             <div id="editor" class="w-1/2 h-full">
                 <div class="h-full">
-                    <codemirror :value="message.html" :options="options" @input="updateHTML" class="h-full text-sm pb-24 xl:pb-16 bg-cm-black"></codemirror>
+                    <codemirror v-model="message.html" :options="options" class="h-full text-sm pb-24 xl:pb-16 bg-cm-black"></codemirror>
                 </div>
             </div>
             <div id="preview" class="w-1/2 h-full bg-white">
                 <span class="iframe-width" v-cloak :class="{'hidden': !iframeWidth}">@{{ iframeWidth ? iframeWidth + 'px' : '' }}</span>
-                <iframe class="iframe w-full h-full pb-16"></iframe>
+                <iframe
+                    class="iframe w-full h-full pb-16"
+                    sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts"
+                    allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor"
+                    allowtransparency="true"
+                    allowpaymentrequest="true"
+                    :srcdoc="message.html"></iframe>
             </div>
         </div>
     </div>
