@@ -10,7 +10,7 @@
 
 Source code of [sendtest.email](https://sendtest.email) - a simple tool for sending HTML email tests to your inbox.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/3e40d277-84a6-42aa-86a7-724a3fbbef1e/deploy-status)](https://app.netlify.com/sites/ecstatic-wilson-eceae1/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3e40d277-84a6-42aa-86a7-724a3fbbef1e/deploy-status)](https://app.netlify.com/sites/send-test-email/deploys)
 
 ## Features
 
