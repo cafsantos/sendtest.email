@@ -1,0 +1,78 @@
+[v-cloak] {
+  @apply hidden;
+}
+
+.bg-swirl {
+  background: #1d976c;
+  background: linear-gradient(to right, rgba(29, 151, 108, 0.85), rgba(147, 249, 185, 0.85)), url(/img/swirl.png);
+}
+
+.gutter {
+  @apply bg-gray-300 flex items-center;
+  cursor: e-resize;
+}
+
+.gutter-horizontal::before {
+  @apply text-gray-600 bg-gray-100 border border-gray-300 border-solid text-center rounded z-50;
+  content: '⋮';
+  margin-left: -3px;
+  padding: 12px 2px;
+  text-orientation: mixed;
+  word-break: break-all;
+}
+
+.gutter-horizontal:hover {
+  @apply bg-gray-400;
+}
+
+.gutter-horizontal:hover::before {
+  @apply text-gray-700 border-gray-400;
+}
+
+.CodeMirror {
+  @apply h-full !important;
+  @apply pt-4;
+}
+
+.CodeMirror-code {
+  @apply leading-relaxed;
+}
+
+.iframe-width-helper {
+  @apply absolute mb-10 ml-6 bottom-0 px-3 py-2 rounded text-white text-xs;
+  background-color: rgba(0,0,0,0.5);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: inherit;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-input {
+  @apply bg-transparent px-4 py-3 outline-none w-full;
+}
+
+.form-input + label {
+  @apply absolute left-0 pl-4 pt-3;
+  transition: all .3s ease;
+}
+
+.form-input:not(:placeholder-shown) + label {
+  @apply text-sm opacity-50;
+  transform: translateY(-1.5rem);
+}
+
+.form-input::-webkit-input-placeholder {color: transparent;}
+.form-input:-moz-placeholder {color: transparent;}
+.form-input::-moz-placeholder {color: transparent;}
+.form-input:-ms-input-placeholder {color: transparent;}
+

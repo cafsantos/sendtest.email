@@ -1,7 +1,7 @@
-let crlf = /(\r?\n|\r)/g;
-let whitespace = /(\r?\n|\r|\s+)/g;
+const crlf = /(\r?\n|\r)/g;
+const whitespace = /(\r?\n|\r|\s+)/g;
 
-module.exports = {
+export default {
   count: function(text, options) {
     options = options || {};
     options.lineBreaks = options.lineBreaks || 1;
@@ -28,7 +28,6 @@ module.exports = {
     }
 
     count = Math.round(count*100)/100;
-
     level = ['', 'K', 'M', 'G', 'T'][level];
 
     return plainText ? count : count + ' ' + level + 'B';

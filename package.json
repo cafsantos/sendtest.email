@@ -1,36 +1,49 @@
 {
+  "name": "vue-cli-tailwind-1.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "local": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --env=local --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "staging": "cross-env NODE_ENV=staging node_modules/webpack/bin/webpack.js --progress --hide-modules --env=staging --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --env=production --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "build:lambda": "cd tasks/lambda && npm install && cd ../../ && netlify-lambda build tasks/lambda",
-    "dev": "npm run local",
-    "watch": "npm run local -- --watch"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.23.6",
-    "browser-sync-webpack-plugin": "^2.0.1",
-    "cross-env": "^3.2.3",
-    "hasbin": "^1.2.3",
-    "laravel-mix": "^2.1.0",
-    "laravel-mix-purgecss": "^2.2.0",
-    "netlify-lambda": "^1.0.2",
-    "node-cmd": "^3.0.0",
-    "on-build-webpack": "^0.1.0",
-    "postcss-import": "^12.0.0",
-    "tailwindcss": "^0.6.1",
-    "vue": "^2.5.17",
-    "vue-template-compiler": "^2.5.17",
-    "webpack-watch": "^0.2.0",
-    "yargs": "^4.6.0"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:lambda": "cd src/lambda && npm install && cd ../../ && netlify-lambda build src/lambda",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "split.js": "^1.5.3",
-    "sweetalert2": "^7.28.5",
+    "netlify-lambda": "^1.4.3",
+    "postcss-import": "^12.0.1",
+    "split.js": "^1.5.10",
+    "sweetalert2": "^8.7.0",
+    "tailwindcss": "^1.0.0-beta.2",
+    "vue": "^2.6.6",
     "vue-codemirror-lite": "^1.0.4"
   },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^1.1.0",
+    "@vue/cli-plugin-babel": "^3.0.1",
+    "@vue/cli-plugin-eslint": "^3.0.1",
+    "@vue/cli-service": "^3.0.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-template-compiler": "^2.5.21"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
   "browserslist": [
-    "> 1%"
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
   ]
 }

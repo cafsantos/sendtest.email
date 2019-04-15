@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://sendtest.email/" target="_blank">
-        <img width="400" src="https://sendtest.email/assets/img/ste-github.jpg" alt="SendTest.Email">
+        <img width="400" src="https://res.cloudinary.com/cossssmin/image/upload/v1554371926/os/sendtest.email/ste-github.jpg" alt="SendTest.Email">
     </a>
     <br>
     Send a test email to your inbox
@@ -16,15 +16,23 @@ Source code of [sendtest.email](https://sendtest.email) - a simple tool for send
 
 #### ✍ Code Editor
 
-Paste in your HTML email code, or write from scratch. Uses [vue-codemirror-lite](https://github.com/cnu4/vue-codemirror-lite) with the Material theme.
+Paste in your email code, or write from scratch. Uses [vue-codemirror-lite](https://github.com/cnu4/vue-codemirror-lite) with the Material theme.
+
+#### 🎭 Multiple MIME-parts
+
+The following MIME-parts are supported:
+
+- HTML
+- ⚡4email
+- Text
 
 #### 📱 Responsive Preview
 
-Preview your HTML live, in a resizable iframe.
+Preview your HTML live, in a resizable iframe:
 
-- Drag the handle to horizontally-resize the preview.
-- While dragging, the iframe shows a viewport width indicator.
-- Double-clicking the handle resets the panes to their original widths.
+- drag the handle to horizontally-resize the preview
+- while dragging, the iframe shows a viewport pixel width indicator
+- double-clicking the handle resets the panes to their original widths
 
 #### ⚠ HTML Size Indicator
 
@@ -45,11 +53,10 @@ On sendtest.email you will find:
 
 This app is built with great open source software:
 
-- [Jigsaw](https://jigsaw.tighten.co)
+- [Vue CLI](https://cli.vuejs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [Vue.js](https://vuejs.org/)
 
-... and is powered by awesome free services:
+... and is powered by these awesome services:
 
 - [Netlify](https://www.netlify.com/), with [Functions](https://www.netlify.com/features/functions/)
 - [SparkPost](https://www.sparkpost.com/)
@@ -69,13 +76,13 @@ Therefore, the following limitations apply:
 
 - 10k emails/day or 100k emails/month
 
-\* There's currently only one Lambda Function being used: a Node.js script that makes a call to SparkPost's API. It's run each time the app *attempts* to send an email (so, even when it might fail).
+\* There's currently only one Lambda Function being used: a Node.js script that makes a call to SparkPost's API. It runs each time the app *attempts* to send an email (so, even when it might fail).
 
 ## Contributing
 
 If you have ideas for new features, or you found a bug and want to squash it, PRs are welcome!
 
 However, nobody likes working hard just to see their PR being rejected.
-So, before starting any significant work, please [open an issue](https://github.com/hellocosmin/sendtest.email/issues/new) so we can discuss it.
+So, before starting any significant work, please [open an issue](https://github.com/cossssmin/sendtest.email/issues/new) so we can discuss it.
 
 Also, note that Netlify CI is being used. When you open a PR, it'll automatically deploy a public build preview.

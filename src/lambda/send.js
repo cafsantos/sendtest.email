@@ -45,7 +45,9 @@ exports.handler = function (event, context, callback) {
         email: 'tests@mail.sendtest.email'
       },
       subject: payload.subject,
-      html: payload.html
+      html: payload.html,
+      amp_html: payload.amp_html,
+      text: payload.text,
     },
     recipients: [
       {address: payload.recipient}
