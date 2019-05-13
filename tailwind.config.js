@@ -311,7 +311,6 @@ module.exports = {
       ...theme('spacing'),
       '-10': '-2.5rem',
     }),
-    negativeMargin: theme => theme('spacing'),
     objectPosition: {
       bottom: 'bottom',
       center: 'center',
