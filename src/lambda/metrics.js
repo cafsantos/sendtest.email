@@ -14,7 +14,7 @@ const options = {
 exports.handler = function (event, context, callback) {
 
   if (event.httpMethod !== "GET") {
-    return callback(null, {
+    callback(null, {
       statusCode: 405,
       body: JSON.stringify({
         message: 'Method Not Allowed',
@@ -23,13 +23,11 @@ exports.handler = function (event, context, callback) {
   }
 
   client.get(options)
-    .then(data => {
-      return callback(null, {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify(data),
-      });
-    })
+    .then(response => response.json())
+    .then(data => ({
+      statusCode: 200,
+      body: data
+    }))
     .catch(error => ({ statusCode: 422, body: String(error) }))
 
 };

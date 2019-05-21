@@ -168,7 +168,7 @@ export default {
       })
       .then(response => {
         // $vm.totalSent = response.body.results[0].count_sent
-        console.log(response.body)
+        console.log(response, response.body)
       })
       .catch(err => {
         console.log(err)
