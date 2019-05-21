@@ -173,7 +173,6 @@ export default {
       fetch('/.netlify/functions/metrics')
       .then(response => response.json())
       .then(json => $vm.totalSent = json.results[0].count_sent)
-      // eslint-disable-next-line
       .catch(err => console.log(err))
     },
     submitToServer () {
