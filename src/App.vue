@@ -59,7 +59,7 @@
         </div>
       </div>
     </div>
-    <div :class="{'hidden': showAbout}" class="flex items-center justify-center absolute top-0 left-0 w-full h-full z-60">
+    <div :class="{'hidden': !showAbout}" class="flex items-center justify-center absolute top-0 left-0 w-full h-full z-60">
       <div @click="showAbout = !showAbout" class="fixed top-0 left-0 w-full h-full bg-modal-backdrop"></div>
       <div class="bg-white p-8 text-gray-600 max-w-lg relative shadow-2xl rounded z-10">
         <p>
@@ -119,12 +119,13 @@ export default {
         lineNumbers: true,
         theme: 'material',
       },
-      showAbout: true,
+      showAbout: false,
       totalSent: '?',
     }
   },
   mounted () {
     const $vm = this
+
     splitPanes = Split([document.getElementById('editor'), document.getElementById('preview')], {
       minSize: [600, 10],
       gutterSize: 4,
@@ -138,6 +139,12 @@ export default {
     })
 
     $vm.resetGutterPosition()
+
+    document.body.addEventListener('keyup', e => {
+      if (e.keyCode === 27) {
+        $vm.showAbout = false
+      }
+    })
   },
   methods: {
     openAbout () {
