@@ -162,11 +162,14 @@ export default {
       return checkEmail(email)
     },
     fetchTotalSent () {
-      let $vm = this;
+      const $vm = this
       fetch(`/.netlify/functions/metrics`, {
         method: "GET",
       })
-      .then(response => $vm.totalSent = response.results[0].count_sent)
+      .then(response => {
+        console.log(response)
+        $vm.totalSent = response.results[0].count_sent
+      })
       .catch(() => $vm.totalSent = '?')
     },
     submitToServer () {
@@ -240,9 +243,6 @@ export default {
         }
       })
     },
-    fetchMetrics () {
-      return this.totalSent = 10
-    }
   },
   computed: {
     fileSizeUnix () {
