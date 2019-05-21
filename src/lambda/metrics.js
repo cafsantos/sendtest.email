@@ -23,20 +23,27 @@ exports.handler = function (event, context, callback) {
   }
 
   client.get(options)
-    .then(data => {
-      return callback(null, {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify(data),
-      });
-    })
-    .catch(err => {
-      return callback(null, {
-        statusCode: 500,
-        body: JSON.stringify({
-          data: err,
-        })
-      });
-    });
+    .then(response => response.json())
+    .then(data => ({
+      statusCode: 200,
+      body: data
+    }))
+    .catch(error => ({ statusCode: 422, body: String(error) }))
+
+    // .then(data => {
+    //   return callback(null, {
+    //     statusCode: 200,
+    //     headers,
+    //     body: JSON.stringify(data),
+    //   });
+    // })
+    // .catch(err => {
+    //   return callback(null, {
+    //     statusCode: 500,
+    //     body: JSON.stringify({
+    //       data: err,
+    //     })
+    //   });
+    // });
 
 };

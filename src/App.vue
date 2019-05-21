@@ -186,7 +186,7 @@ export default {
       })
     },
     handleSubmit () {
-      let $vm = this
+      const $vm = this
       $vm.errors.recipient = false
       $vm.errors.subject = false
 
