@@ -27,7 +27,7 @@ exports.handler = function (event, context, callback) {
       return callback(null, {
         statusCode: 200,
         headers,
-        body: data,
+        body: JSON.stringify(data),
       });
     })
     .catch(error => ({ statusCode: 422, body: String(error) }))
