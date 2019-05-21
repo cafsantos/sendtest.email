@@ -23,10 +23,9 @@ exports.handler = function (event, context, callback) {
   }
 
   client.get(options)
-    .then(response => response.json())
     .then(data => ({
       statusCode: 200,
-      body: data
+      body: data.json()
     }))
     .catch(error => ({ statusCode: 422, body: String(error) }))
 
