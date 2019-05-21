@@ -163,15 +163,11 @@ export default {
     },
     fetchTotalSent () {
       let $vm = this;
-      return new Promise((resolve, reject) => {
-        fetch(`/.netlify/functions/metrics`, {
-          method: "GET",
-        })
-        .then(response => {
-          console.log(response)
-        })
-        .catch(err => reject(err))
+      fetch(`/.netlify/functions/metrics`, {
+        method: "GET",
       })
+      .then(response => $vm.totalSent = response.results[0].count_sent)
+      .catch(() => $vm.totalSent = '?')
     },
     submitToServer () {
       let $vm = this;
