@@ -1,12 +1,5 @@
 const SparkPost = require('sparkpost');
 const client = new SparkPost(process.env.SPARKPOST_METRICS_KEY);
-
-const headers = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET",
-  "Access-Control-Allow-Headers": "Content-Type"
-};
-
 const options = {
   uri: 'metrics/deliverability?from=2018-10-17T00%3A00&metrics=count_sent'
 };
