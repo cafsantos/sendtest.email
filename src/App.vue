@@ -66,7 +66,7 @@
           <em>Sendtest.email</em> is a free and open-source tool for testing your email campaign's HTML, AMPHTML, and text versions before launch, in a real email client.
         </p>
         <div class="flex flex-col text-center my-12">
-          <p class="text-6xl text-green-500">{{ totalSent }}</p>
+          <p class="text-6xl text-green-500">{{ totalSentFormatted }}</p>
           <p class="italic">total emails sent</p>
         </div>
         <p class="text-xs text-gray-500 text-center leading-relaxed">
@@ -166,10 +166,8 @@ export default {
       fetch('/.netlify/functions/metrics')
       .then(response => response.json())
       .then(json => $vm.totalSent = json.results[0].count_sent)
-      .catch(err => {
-        console.log(err)
-        $vm.totalSent = '?'
-      })
+      // eslint-disable-next-line
+      .catch(err => console.log(err))
     },
     submitToServer () {
       let $vm = this;
@@ -250,6 +248,9 @@ export default {
     formattedFileSizeUnix () {
       return this.message[this.activetab].length > 0 ? '~ ' + ByteSize.format(ByteSize.count(this.message[this.activetab])) : '0 KB'
     },
+    totalSentFormatted () {
+      return this.totalSent > 0 ? new Intl.NumberFormat('en-US').format(this.totalSent) : '?'
+    }
   }
 }
 </script>
