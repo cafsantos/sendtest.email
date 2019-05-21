@@ -8,6 +8,7 @@ module.exports = {
 
       'cm-black': '#263238',
       'cm-black-15': 'rgba(38,50,56,.15)',
+      'modal-backdrop': 'rgba(255,255,255,.75)',
       black: '#000',
       white: '#fff',
 
@@ -123,6 +124,7 @@ module.exports = {
       },
     },
     spacing: {
+      app: 'calc(100% - 5.5rem)',
       px: '1px',
       '0': '0',
       '1': '0.25rem',
@@ -340,6 +342,7 @@ module.exports = {
       '30': 30,
       '40': 40,
       '50': 50,
+      '60': 60,
     },
     opacity: {
       '0': '0',
@@ -414,10 +417,9 @@ module.exports = {
     maxWidth: ['responsive'],
     minHeight: ['responsive'],
     minWidth: ['responsive'],
-    negativeMargin: ['responsive'],
     objectFit: ['responsive'],
     objectPosition: ['responsive'],
-    opacity: ['responsive'],
+    opacity: ['responsive', 'hover'],
     outline: ['focus'],
     overflow: ['responsive'],
     padding: ['responsive'],
