@@ -167,7 +167,9 @@ export default {
         fetch(`/.netlify/functions/metrics`, {
           method: "GET",
         })
-        .then(response => $vm.totalSent = response)
+        .then(response => {
+          console.log(response)
+        })
         .catch(err => reject(err))
       })
     },
