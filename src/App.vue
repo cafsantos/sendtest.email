@@ -165,8 +165,8 @@ export default {
       const $vm = this
       fetch('/.netlify/functions/metrics')
       .then(response => {
-        // $vm.totalSent = response.body.results[0].count_sent
-        console.log(response.json())
+        response = response.json()
+        $vm.totalSent = response.results[0].count_sent
       })
       .catch(err => {
         console.log(err)
