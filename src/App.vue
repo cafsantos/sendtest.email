@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="flex h-screen bg-swirl p-4">
-    <div class="flex flex-col w-full h-full" style="height: calc(100% - 5.5rem)">
-      <h1 class="flex-none text-xl font-semibold italic text-green-100 h-12">sendtest.email</h1>
+    <div class="flex flex-wrap w-full h-app">
+      <h1 @click="openAbout()" class="text-xl font-semibold italic text-green-100 mr-4 h-12 cursor-pointer">sendtest.email</h1>
       <div class="w-full h-full">
         <div class="flex">
           <ul class="flex h-10 font-semibold w-1/2 text-cm-black">
@@ -59,6 +59,25 @@
         </div>
       </div>
     </div>
+    <div :class="{'hidden': showAbout}" class="flex items-center justify-center absolute top-0 left-0 w-full h-full z-60">
+      <div @click="showAbout = !showAbout" class="fixed top-0 left-0 w-full h-full bg-modal-backdrop"></div>
+      <div class="bg-white p-8 text-gray-600 max-w-lg relative shadow-2xl rounded z-10">
+        <p>
+          <em>Sendtest.email</em> is a free and open-source tool for testing your email campaign's HTML, AMPHTML, and text versions before launch, in a real email client.
+        </p>
+        <div class="flex flex-col text-center my-12">
+          <p class="text-6xl text-green-500">{{ totalSent }}</p>
+          <p class="italic">total emails sent</p>
+        </div>
+        <p class="text-xs text-gray-500 text-center leading-relaxed">
+          A project by <a href="https://twitter.com/cossssmin" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">@cossssmin</a>.
+          Source code on <a href="https://github.com/cossssmin/sendtest.email" rel="noopener noreferrer" class="underline hover:no-underline">GitHub</a>.
+          <br>
+          Powered by <a href="https://www.sparkpost.com/" rel="noopener noreferrer" class="underline hover:no-underline">SparkPost</a>, hosted with <a href="https://www.netlify.com/" rel="noopener noreferrer" class="underline hover:no-underline">Netlify</a>.
+        </p>
+        <svg xmlns="http://www.w3.org/2000/svg" @click="showAbout = !showAbout" class="w-3 h-3 absolute top-0 right-0 mt-4 mr-4 cursor-pointer opacity-75 hover:opacity-100" viewBox="0 0 64 64"><title>Close</title><path fill="#1D1D1B" d="M28.941 31.786L.613 60.114c-.787.787-.787 2.062 0 2.849.393.394.909.59 1.424.59.516 0 1.031-.196 1.424-.59l28.541-28.541 28.541 28.541c.394.394.909.59 1.424.59.515 0 1.031-.196 1.424-.59.787-.787.787-2.062 0-2.849L35.064 31.786 63.41 3.438c.787-.787.787-2.062 0-2.849-.787-.786-2.062-.786-2.848 0L32.003 29.15 3.441.59C2.654-.196 1.38-.196.593.59c-.787.787-.787 2.062 0 2.849l28.348 28.347z"/></svg>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -100,6 +119,8 @@ export default {
         lineNumbers: true,
         theme: 'material',
       },
+      showAbout: true,
+      totalSent: '?',
     }
   },
   mounted () {
@@ -119,6 +140,10 @@ export default {
     $vm.resetGutterPosition()
   },
   methods: {
+    openAbout () {
+      this.showAbout = !this.showAbout
+      this.fetchTotalSent()
+    },
     switchTab (name) {
       this.activetab = name
       this.$refs.codemirror.editor.focus()
@@ -135,6 +160,16 @@ export default {
     },
     isEmail (email) {
       return checkEmail(email)
+    },
+    fetchTotalSent () {
+      let $vm = this;
+      return new Promise((resolve, reject) => {
+        fetch(`/.netlify/functions/metrics`, {
+          method: "GET",
+        })
+        .then(response => $vm.totalSent = response.body.results.count_sent)
+        .catch(err => reject(err))
+      })
     },
     submitToServer () {
       let $vm = this;
@@ -207,6 +242,9 @@ export default {
         }
       })
     },
+    fetchMetrics () {
+      return this.totalSent = 10
+    }
   },
   computed: {
     fileSizeUnix () {
