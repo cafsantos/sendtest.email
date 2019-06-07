@@ -36,7 +36,7 @@ Preview your HTML live, in a resizable iframe:
 
 #### ⚠ HTML Size Indicator
 
-Shows your approximate HTML file size, updated as-you-type.
+Shows your _approximate_ HTML file size, updated as-you-type.
 When you're getting close to [Gmail's clipping limit](https://github.com/hteumeuleu/email-bugs/issues/41), it'll show a warning icon linked to a GitHub issue that discusses this in detail.
 
 #### 🔒 Privacy
@@ -70,19 +70,21 @@ Therefore, the following limitations apply:
 **Netlify**
 
 - Network Bandwidth : 100GB/month
-- Lambda Functions* : 125k requests or 100 hours runtime / month
+- Lambda Functions : 125k requests or 100 hours runtime / month
 
 **SparkPost**
 
 - 10k emails/day or 100k emails/month
 
-\* There's currently only one Lambda Function being used: a Node.js script that makes a call to SparkPost's API. It runs each time the app *attempts* to send an email (so, even when it might fail).
-
 ## Contributing
 
-If you have ideas for new features, or you found a bug and want to squash it, PRs are welcome!
+Have ideas for new features? Found a bug and want to squash it?
 
-However, nobody likes working hard just to see their PR being rejected.
-So, before starting any significant work, please [open an issue](https://github.com/cossssmin/sendtest.email/issues/new) so we can discuss it.
+Pull requests are welcome!
 
-Also, note that Netlify CI is being used. When you open a PR, it'll automatically deploy a public build preview.
+However, nobody likes working hard just to see their PR rejected.
+So, before starting any significant work, please [open an issue](https://github.com/cossssmin/sendtest.email/issues/new) and describe your idea.
+
+### Build previews
+
+When you open a PR, Netlify CI will automatically deploy a public build preview of your branch.
