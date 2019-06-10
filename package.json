@@ -11,7 +11,7 @@
   "dependencies": {
     "netlify-lambda": "^1.4.13",
     "postcss-import": "^12.0.1",
-    "split.js": "^1.5.10",
+    "split.js": "^1.5.11",
     "sweetalert2": "^8.12.0",
     "tailwindcss": "^1.0.3",
     "vue": "^2.6.10",
