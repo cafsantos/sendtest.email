@@ -12,6 +12,52 @@ Source code of [sendtest.email](https://sendtest.email) - a simple tool for send
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3e40d277-84a6-42aa-86a7-724a3fbbef1e/deploy-status)](https://app.netlify.com/sites/send-test-email/deploys)
 
+## Getting Started
+
+### Clone this repository:
+
+```
+git clone https://github.com/cossssmin/sendtest.email.git
+```
+
+### Install dependencies:
+
+```sh
+# Navigate to project directory
+cd sendtest.email
+
+# Install dependencies with NPM
+npm install
+```
+
+### SparkPost API keys
+
+> This is required for local development
+
+Create a `.env.local` file in the project's root, for your SparkPost keys:
+
+```
+SPARKPOST_API_KEY=
+SPARKPOST_METRICS_KEY=
+```
+
+In SparkPost Settings, when generating your keys, you only need the following permissions:
+
+- `SPARKPOST_API_KEY` : Transmissions (both Read-only and Read/Write)
+- `SPARKPOST_METRICS_KEY` : Metrics: Read-only
+
+#### Netlify Environment
+
+When using Netlify, make sure to add these environment variables in your admin, under *Build & Deploy &rarr; Continuous Deployment &rarr; Environment*.
+
+### Development
+
+As with any Vue CLI app, `npm run serve` will start a development server.
+
+In our case, it will also start a server for testing Netlify Lambda functions locally, using [`vue-cli-plugin-netlify-lambda`](https://github.com/netlify/vue-cli-plugin-netlify-lambda).
+
+***
+
 ## Features
 
 #### ✍ Code Editor
@@ -61,21 +107,6 @@ This app is built with great open source software:
 - [Netlify](https://www.netlify.com/), with [Functions](https://www.netlify.com/features/functions/)
 - [SparkPost](https://www.sparkpost.com/)
 
-## Usage Limits
-
-The web app is hosted on a free Netlify plan, and uses a free (legacy) SparkPost account.
-
-Therefore, the following limitations apply:
-
-**Netlify**
-
-- Network Bandwidth : 100GB/month
-- Lambda Functions : 125k requests or 100 hours runtime / month
-
-**SparkPost**
-
-- 10k emails/day or 100k emails/month
-
 ## Contributing
 
 Have ideas for new features? Found a bug and want to squash it?
@@ -83,7 +114,7 @@ Have ideas for new features? Found a bug and want to squash it?
 Pull requests are welcome!
 
 However, nobody likes working hard just to see their PR rejected.
-So, before starting any significant work, please [open an issue](https://github.com/cossssmin/sendtest.email/issues/new) and describe your idea.
+So, before starting any *significant* work, please [open an issue](https://github.com/cossssmin/sendtest.email/issues/new) and describe your idea.
 
 ### Build previews
 
