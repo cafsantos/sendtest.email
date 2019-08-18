@@ -59,30 +59,11 @@
         </div>
       </div>
     </div>
-    <div :class="{'hidden': !showAbout}" class="flex items-center justify-center absolute top-0 left-0 w-full h-full z-60">
-      <div @click="showAbout = !showAbout" class="fixed top-0 left-0 w-full h-full bg-modal-backdrop"></div>
-      <div class="bg-white p-8 text-gray-600 max-w-lg relative shadow-2xl rounded z-10">
-        <p>
-          <em>Sendtest.email</em> is a free and open-source tool for testing your email campaign's HTML, AMPHTML, and text versions before launch, in a real email client.
-        </p>
-        <div class="flex flex-col text-center my-12">
-          <p class="text-6xl text-green-500">{{ totalSentFormatted }}</p>
-          <p class="italic">total emails sent</p>
-        </div>
-        <p class="text-xs text-gray-500 text-center leading-relaxed">
-          A project by <a href="https://twitter.com/cossssmin" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">@cossssmin</a>.
-          Source code on <a href="https://github.com/cossssmin/sendtest.email" rel="noopener noreferrer" class="underline hover:no-underline">GitHub</a>.
-          <br>
-          Powered by <a href="https://www.sparkpost.com/" rel="noopener noreferrer" class="underline hover:no-underline">SparkPost</a>, hosted with <a href="https://www.netlify.com/" rel="noopener noreferrer" class="underline hover:no-underline">Netlify</a>.
-        </p>
-        <svg xmlns="http://www.w3.org/2000/svg" @click="showAbout = !showAbout" class="w-3 h-3 absolute top-0 right-0 mt-4 mr-4 cursor-pointer opacity-75 hover:opacity-100" viewBox="0 0 64 64"><title>Close</title><path fill="#1D1D1B" d="M28.941 31.786L.613 60.114c-.787.787-.787 2.062 0 2.849.393.394.909.59 1.424.59.516 0 1.031-.196 1.424-.59l28.541-28.541 28.541 28.541c.394.394.909.59 1.424.59.515 0 1.031-.196 1.424-.59.787-.787.787-2.062 0-2.849L35.064 31.786 63.41 3.438c.787-.787.787-2.062 0-2.849-.787-.786-2.062-.786-2.848 0L32.003 29.15 3.441.59C2.654-.196 1.38-.196.593.59c-.787.787-.787 2.062 0 2.849l28.348 28.347z"/></svg>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
-import Split from "split.js"
+import Split from 'split.js'
 import Swal from 'sweetalert2'
 import ByteSize from './helpers/bytesize'
 import checkEmail from './helpers/checkEmail'
@@ -119,7 +100,6 @@ export default {
         lineNumbers: true,
         theme: 'material',
       },
-      showAbout: false,
       totalSent: '?',
     }
   },
@@ -148,8 +128,36 @@ export default {
   },
   methods: {
     openAbout () {
-      this.showAbout = !this.showAbout
-      this.fetchTotalSent()
+      const $vm = this
+      Swal.fire({
+        title: `<div class="flex flex-col text-center mb-4 leading-snug"><p class="text-6xl text-green-500">?</p><p class="italic">emails tested<span class="text-gray-400">*</span></p></div>`,
+        html: `
+          <span class="text-base text-gray-700 text-left font-normal">
+            <em>Sendtest.email</em> is a free and open-source tool for testing your email campaign's HTML, ⚡4email, and plaintext versions before launch, in a real email client.
+          </span>
+        `,
+        footer: `
+          <p class="text-xs text-gray-500 text-center leading-relaxed">
+            A project by <a href="https://twitter.com/cossssmin" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">@cossssmin</a>.
+            Source code on <a href="https://github.com/cossssmin/sendtest.email" rel="noopener noreferrer" class="underline hover:no-underline">GitHub</a>.
+            <br>
+            Powered by <a href="https://www.sparkpost.com/" rel="noopener noreferrer" class="underline hover:no-underline">SparkPost</a>, hosted with <a href="https://www.netlify.com/" rel="noopener noreferrer" class="underline hover:no-underline">Netlify</a>.
+            <br>
+            * Since Oct 17, 2018
+          </p>
+        `,
+        showConfirmButton: false,
+        showCloseButton: true,
+        onBeforeOpen: () => {
+          this.fetchTotalSent().then(total => {
+            $vm.totalSent = total
+            Swal.getTitle().getElementsByTagName('p')[0].innerText = $vm.totalSentFormatted
+          })
+        },
+        onOpen: () => {
+          Swal.getFocusableElements()[0].blur()
+        }
+      })
     },
     switchTab (name) {
       this.activetab = name
@@ -170,14 +178,14 @@ export default {
     },
     fetchTotalSent () {
       const $vm = this
-      fetch('/.netlify/functions/metrics')
-      .then(response => response.json())
-      .then(json => $vm.totalSent = json.results[0].count_sent)
-      // eslint-disable-next-line
-      .catch(err => console.log(err))
+      return fetch('/.netlify/functions/metrics')
+        .then(response => response.json())
+        .then(json => $vm.totalSent = json.results[0].count_sent)
+        // eslint-disable-next-line
+        .catch(err => console.log(err))
     },
     submitToServer () {
-      let $vm = this;
+      const $vm = this
       return new Promise((resolve, reject) => {
         fetch(`/.netlify/functions/send`, {
           method: "POST",
@@ -185,9 +193,9 @@ export default {
         })
         .then(response => response.json())
         .then(data => {
-          resolve(data);
+          resolve(data)
         }).catch(err => {
-          reject(err);
+          reject(err)
         });
       })
     },
