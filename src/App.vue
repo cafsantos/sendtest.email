@@ -182,8 +182,10 @@ export default {
         fetch(`/.netlify/functions/send`, {
           method: "POST",
           body: JSON.stringify($vm.message)
-        }).then(response => {
-          resolve(response);
+        })
+        .then(response => response.json())
+        .then(data => {
+          resolve(data);
         }).catch(err => {
           reject(err);
         });
@@ -210,7 +212,7 @@ export default {
         return
       }
 
-      if ($vm.message.html.length < 1 && $vm.message.text.length < 1) {
+      if ($vm.message.html.length < 1) {
         Swal.fire({
           title: 'Missing content',
           text: 'Please add at least an HTML version.',
@@ -224,23 +226,46 @@ export default {
       $vm.sending = true
 
       $vm.submitToServer().then(response => {
-        if (Number(response.status) !== 200) {
+        if (!response.data) {
           Swal.fire({
             title: 'Well, 💩.',
-            html: `Something went wrong, the email was not sent.`,
+            html: `<span>SparkPost says: </span><em>${response.message || 'Something went wrong, the email was not sent.'}</em>`,
+            footer: `
+              <span class="text-sm text-gray-600">
+                The email was not sent.
+                If this looks like a bug to you, please <a href="https://github.com/cossssmin/sendtest.email/issues" target="_blank" class="text-blue-500 hover:underline">open an issue</a>.
+              </span>
+            `,
             type: 'error',
-            confirmButtonText: 'Dismiss',
+            confirmButtonText: 'Close',
             onOpen: () => {
               $vm.sending = false
             },
           })
         } else {
-          Swal.fire({
-            title: 'Success!',
-            text: 'Test email sent, go check your inbox.',
-            type: 'success',
-            confirmButtonText: 'Close'
-          })
+          if (response.data.results.total_accepted_recipients) {
+            Swal.fire({
+              title: 'Success!',
+              text: 'Test email sent, go check your inbox.',
+              footer: `<span class="text-sm text-gray-600 text-center">Test didn't get through?<br> Check your Spam/Junk folder too, then maybe try again.</span>`,
+              type: 'success',
+              confirmButtonText: 'Close'
+            })
+          }
+          else {
+            Swal.fire({
+              title: 'Well, 💩.',
+              text: `Looks like SparkPost didn't accept your email.`,
+              footer: `
+                <span class="text-sm text-gray-600">
+                  The email was not sent.
+                  If you think this is wrong, please <a href="https://github.com/cossssmin/sendtest.email/issues" target="_blank" class="text-blue-500 hover:underline">open an issue</a>.
+                </span>
+              `,
+              type: 'error',
+              confirmButtonText: 'Close'
+            })
+          }
           $vm.sending = false;
           $vm.errors.subject = false;
           $vm.errors.recipient = false;
