@@ -143,7 +143,7 @@ export default {
             <br>
             Powered by <a href="https://www.sparkpost.com/" rel="noopener noreferrer" class="underline hover:no-underline">SparkPost</a>, hosted with <a href="https://www.netlify.com/" rel="noopener noreferrer" class="underline hover:no-underline">Netlify</a>.
             <br>
-            * Since Oct 17, 2018
+            * Over the last 6 months
           </p>
         `,
         showConfirmButton: false,
