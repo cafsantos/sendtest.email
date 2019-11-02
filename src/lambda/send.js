@@ -15,15 +15,6 @@ const headers = {
 
 exports.handler = function (event, context, callback) {
 
-  if (payload.subject == process.env.FU) {
-    return callback(null, {
-      statusCode: 404,
-      body: JSON.stringify({
-        message: 'Resource not found',
-      }),
-    });
-  }
-
   if (event.httpMethod !== "POST") {
     return callback(null, {
       statusCode: 405,
@@ -34,6 +25,15 @@ exports.handler = function (event, context, callback) {
   }
 
   const payload = JSON.parse(event.body);
+
+  if (payload.subject == process.env.FU) {
+    return callback(null, {
+      statusCode: 404,
+      body: JSON.stringify({
+        message: 'Resource not found',
+      }),
+    });
+  }
 
   if (
     !payload.subject ||
