@@ -13,7 +13,8 @@ exports.handler = function (event, context, callback) {
     return callback(null, {
       statusCode: 404,
       body: JSON.stringify({
-        message: `Resource not found, ${event.origin}`,
+        message: 'Resource not found',
+        event: event,
       }),
     });
   }
