@@ -1,10 +1,11 @@
-const SparkPost = require('sparkpost');
-const sparkpostClient = new SparkPost(process.env.SPARKPOST_API_KEY);
-const akismet = require('akismet-api');
+const akismet = require('akismet');
 const akismetClient = akismet.client({
-  key: process.env.AKISMET_API_KEY,
+  apiKey: process.env.AKISMET_API_KEY,
   blog: 'https://sendtest.email'
 });
+
+const SparkPost = require('sparkpost');
+const sparkpostClient = new SparkPost(process.env.SPARKPOST_API_KEY);
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -39,7 +40,7 @@ exports.handler = function (event, context, callback) {
     });
   }
 
-  akismetClient.checkSpam({
+  akismetClient.checkComment({
     user_ip : event.headers['x-nf-client-connection-ip'], // Required!
     user_agent : event.headers['user-agent'], // Required!
     referrer : event.headers['referrer'], // Required!
@@ -47,9 +48,6 @@ exports.handler = function (event, context, callback) {
     comment_content : payload.html,
   }, function(err, spam) {
     if (err) {
-      console.log('ERROR!')
-      console.log(event)
-      console.log(context)
       return callback(null, {
         statusCode: 500,
         body: JSON.stringify({
@@ -59,9 +57,6 @@ exports.handler = function (event, context, callback) {
     }
 
     if (spam) {
-      console.log('SPAM CAUGHT!')
-      console.log(event)
-      console.log(context)
       return callback(null, {
         statusCode: 404,
         body: JSON.stringify({
@@ -70,7 +65,6 @@ exports.handler = function (event, context, callback) {
       });
     }
 
-    // send
     sparkpostClient.transmissions.send({
       options: {
         open_tracking: false,
