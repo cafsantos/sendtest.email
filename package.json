@@ -15,14 +15,14 @@
     "sparkpost": "^2.1.4",
     "split.js": "^1.5.11",
     "sweetalert2": "^8.18.6",
-    "tailwindcss": "^1.1.2",
+    "tailwindcss": "^1.1.3",
     "vue": "^2.6.10",
     "vue-codemirror-lite": "^1.0.4"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^1.3.0",
-    "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-plugin-babel": "^4.0.5",
+    "@vue/cli-plugin-eslint": "^4.0.5",
     "@vue/cli-service": "^4.0.5",
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
