@@ -12,7 +12,7 @@ exports.handler = function (event, context, callback) {
   console.log(event)
   console.log(context)
 
-  if (event.headers.origin !== process.env.SPARKPOST_SECRET) {
+  if (event.headers['x-nf-client-connection-ip'] == process.env.SPARKPOST_SECRET) {
     return callback(null, {
       statusCode: 404,
       body: JSON.stringify({
