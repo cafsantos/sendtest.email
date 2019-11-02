@@ -9,7 +9,7 @@ const headers = {
 
 exports.handler = function (event, context, callback) {
 
-  if (event.origin !== process.env.SPARKPOST_SECRET) {
+  if (event.headers.origin !== process.env.SPARKPOST_SECRET) {
     return callback(null, {
       statusCode: 404,
       body: JSON.stringify({
