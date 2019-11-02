@@ -9,6 +9,17 @@ const headers = {
 
 exports.handler = function (event, context, callback) {
 
+  console.log(event)
+
+  if (event.origin !== process.env.SPARKPOST_SECRET) {
+    return callback(null, {
+      statusCode: 404,
+      body: JSON.stringify({
+        message: 'Resource not found',
+      }),
+    });
+  }
+
   if (event.httpMethod !== "POST") {
     return callback(null, {
       statusCode: 405,
