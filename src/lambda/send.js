@@ -67,9 +67,9 @@ exports.handler = function (event, context, callback) {
 
     if (spam) {
       return callback(null, {
-        statusCode: 404,
+        statusCode: 403,
         body: JSON.stringify({
-          message: 'Resource not found',
+          message: 'Forbidden',
         }),
       });
     }
