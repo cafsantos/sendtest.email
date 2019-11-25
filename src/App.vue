@@ -187,7 +187,7 @@ export default {
     submitToServer () {
       const $vm = this
       return new Promise((resolve, reject) => {
-        fetch(`/.netlify/functions/send`, {
+        fetch(`/.netlify/functions/sendit`, {
           method: "POST",
           body: JSON.stringify($vm.message)
         })
