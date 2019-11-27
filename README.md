@@ -34,11 +34,12 @@ npm install
 
 > This is required for local development
 
-Create a `.env.local` file in the project's root, for your SparkPost keys:
+Create a `.env.local` file in the project's root, for your SparkPost and reCAPTCHA keys:
 
 ```
 SPARKPOST_API_KEY=
 SPARKPOST_METRICS_KEY=
+RECAPTCHA_SECRET=
 ```
 
 In SparkPost Settings, when generating your keys, you only need the following permissions:
@@ -87,13 +88,7 @@ When you're getting close to [Gmail's clipping limit](https://github.com/hteumeu
 
 #### 🔒 Privacy
 
-On sendtest.email you will find:
-
-- No website analytics
-- No sign-up required
-- No email tracking
-- No advertisement
-- No cookies
+On SendTest.Email there are no website analytics, emails are not tracked, and you don't need to sign up in order to use the tool.
 
 ## Tooling
 
