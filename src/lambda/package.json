@@ -2,6 +2,7 @@
   "name": "functions",
   "description": "Netlify functions",
   "dependencies": {
+    "axios": "^0.19.0",
     "babel-loader": "^8.0.4",
     "sparkpost": "^2.1.2"
   },

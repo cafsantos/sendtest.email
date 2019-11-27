@@ -35,7 +35,14 @@
                 </div>
               </div>
               <div class="w-1/5 flex justify-end px-4 py-2">
-                <button @click="handleSubmit" :class="{'cursor-default opacity-50 pointer-events-none' : sending}" class="px-4 py-2 text-green-500 bg-white shadow hover:shadow-md text-xs font-bold uppercase rounded focus:outline-none" v-html="sending ? 'Sending...' : 'Send Test &rarr;'">Send Test &rarr;</button>
+                <button
+                  @click="handleSubmit"
+                  :class="{'cursor-default opacity-50 pointer-events-none' : sending}"
+                  class="px-4 py-2 text-green-500 bg-white shadow hover:shadow-md text-xs font-bold uppercase rounded focus:outline-none"
+                  v-html="sending ? 'Sending...' : 'Send Test &rarr;'"
+                >
+                  Send Test &rarr;
+                </button>
               </div>
             </div>
           </div>
@@ -44,7 +51,7 @@
           <div id="editor" class="h-full bg-cm-black shadow-2xl">
             <codemirror v-model="message[activetab]" ref="codemirror" :options="codemirrorOptions" class="h-full text-sm" />
           </div>
-          <div id="preview" class="h-full bg-white shadow-2xl">
+          <div id="preview" class="h-full bg-white shadow-2xl z-10">
             <span class="iframe-width-helper" :class="{'hidden': iframeWidth < 1}">{{ iframeWidth + 'px' }}</span>
             <iframe
                 ref="preview"
@@ -201,8 +208,6 @@ export default {
     },
     handleSubmit () {
       const $vm = this
-      $vm.errors.recipient = false
-      $vm.errors.subject = false
 
       if (document.getElementById('from').value !== '' || document.getElementById('url').value !== 'https://sendtest.email')
       {
@@ -233,37 +238,67 @@ export default {
 
       $vm.sending = true
 
-      $vm.submitToServer().then(response => {
-        if (!response.data) {
-          Swal.fire({
-            title: 'Well, 💩.',
-            html: `<span>SparkPost says: </span><em>${response.message || 'Something went wrong, the email was not sent.'}</em>`,
-            footer: `
-              <span class="text-sm text-gray-600">
-                The email was not sent.
-                If this looks like a bug to you, please <a href="https://github.com/cossssmin/sendtest.email/issues" target="_blank" class="text-blue-500 hover:underline">open an issue</a>.
-              </span>
-            `,
-            type: 'error',
-            confirmButtonText: 'Close',
-            onOpen: () => {
-              $vm.sending = false
-            },
-          })
-        } else {
-          if (response.data.results.total_accepted_recipients) {
-            Swal.fire({
-              title: 'Success!',
-              text: 'Test email sent, go check your inbox.',
-              footer: `<span class="text-sm text-gray-600 text-center">Test didn't get through?<br> Check your Spam/Junk folder too, then maybe try again.</span>`,
-              type: 'success',
-              confirmButtonText: 'Close'
+      this.$recaptcha('sendtest').then(token => {
+       fetch(`/.netlify/functions/verify`, {
+          method: "POST",
+          body: JSON.stringify(token)
+        })
+        .then(response => response.json())
+        .then(res => {
+          if (res.data.score > 0.5) {
+            $vm.errors.recipient = false
+            $vm.errors.subject = false
+
+            $vm.submitToServer().then(response => {
+              if (!response.data) {
+                Swal.fire({
+                  title: 'Well, 💩.',
+                  html: `<span>SparkPost says: </span><em>${response.message || 'Something went wrong, the email was not sent.'}</em>`,
+                  footer: `
+                    <span class="text-sm text-gray-600">
+                      The email was not sent.
+                      If this looks like a bug to you, please <a href="https://github.com/cossssmin/sendtest.email/issues" target="_blank" class="text-blue-500 hover:underline">open an issue</a>.
+                    </span>
+                  `,
+                  type: 'error',
+                  confirmButtonText: 'Close',
+                  onOpen: () => {
+                    $vm.sending = false
+                  },
+                })
+              } else {
+                if (response.data.results.total_accepted_recipients) {
+                  Swal.fire({
+                    title: 'Success!',
+                    text: 'Test email sent, go check your inbox.',
+                    footer: `<span class="text-sm text-gray-600 text-center">Test didn't get through?<br> Check your Spam/Junk folder too, then maybe try again.</span>`,
+                    type: 'success',
+                    confirmButtonText: 'Close'
+                  })
+                }
+                else {
+                  Swal.fire({
+                    title: 'Well, 💩.',
+                    text: `Looks like SparkPost didn't accept your email.`,
+                    footer: `
+                      <span class="text-sm text-gray-600">
+                        The email was not sent.
+                        If you think this is wrong, please <a href="https://github.com/cossssmin/sendtest.email/issues" target="_blank" class="text-blue-500 hover:underline">open an issue</a>.
+                      </span>
+                    `,
+                    type: 'error',
+                    confirmButtonText: 'Close'
+                  })
+                }
+                $vm.sending = false;
+                $vm.errors.subject = false;
+                $vm.errors.recipient = false;
+              }
             })
-          }
-          else {
+          } else {
             Swal.fire({
-              title: 'Well, 💩.',
-              text: `Looks like SparkPost didn't accept your email.`,
+              title: 'Oh well... 🤷‍♂️',
+              text: `reCAPTCHA is ${100 - res.data.score*100}% sure you're a bot.`,
               footer: `
                 <span class="text-sm text-gray-600">
                   The email was not sent.
@@ -271,14 +306,31 @@ export default {
                 </span>
               `,
               type: 'error',
-              confirmButtonText: 'Close'
+              confirmButtonText: 'Close',
+              onOpen: () => {
+                $vm.sending = false;
+              }
             })
           }
-          $vm.sending = false;
-          $vm.errors.subject = false;
-          $vm.errors.recipient = false;
-        }
+        }).catch(err => { // eslint-disable-line
+          Swal.fire({
+            title: 'Well, 💩.',
+            text: `We could not verify that you're human.`,
+            footer: `
+              <span class="text-sm text-gray-600">
+                The email was not sent.
+                If you think this is wrong, please <a href="https://github.com/cossssmin/sendtest.email/issues" target="_blank" class="text-blue-500 hover:underline">open an issue</a>.
+              </span>
+            `,
+            type: 'error',
+            confirmButtonText: 'Close',
+            onOpen: () => {
+              $vm.sending = false;
+            }
+          })
+        });
       })
+
     },
   },
   computed: {

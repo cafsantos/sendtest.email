@@ -76,3 +76,10 @@ select:-webkit-autofill:focus {
 .form-input::-moz-placeholder {color: transparent;}
 .form-input:-ms-input-placeholder {color: transparent;}
 
+.grecaptcha-badge {
+  @apply z-0;
+}
+
+.grecaptcha-badge:hover {
+  @apply z-20;
+}
