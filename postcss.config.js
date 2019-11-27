@@ -10,7 +10,7 @@ module.exports = {
         './src/**/*.vue',
         './public/**/*.html',
       ],
-      whitelistPatterns: [/CodeMirror/, /cm-/, /gutter/],
+      whitelistPatterns: [/CodeMirror/, /cm-/, /gutter/, /grecaptcha/],
       extractors: [
         {
           extractor: class TailwindExtractor {
