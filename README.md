@@ -88,7 +88,7 @@ When you're getting close to [Gmail's clipping limit](https://github.com/hteumeu
 
 #### 🔒 Privacy
 
-On SendTest.Email there are no website analytics, emails are not tracked, and you don't need to sign up in order to use the tool.
+SendTest.Email uses no website analytics. Emails are not tracked, and you don't need to sign up in order to use the tool.
 
 ## Tooling
 
