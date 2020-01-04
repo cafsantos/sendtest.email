@@ -13,7 +13,7 @@
     "postcss-import": "^12.0.1",
     "sparkpost": "^2.1.4",
     "split.js": "^1.5.11",
-    "sweetalert2": "^9.4.1",
+    "sweetalert2": "^9.5.4",
     "tailwindcss": "^1.1.4",
     "vue": "^2.6.11",
     "vue-codemirror-lite": "^1.0.4",
