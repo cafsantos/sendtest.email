@@ -15,7 +15,7 @@
     "split.js": "^1.5.11",
     "sweetalert2": "^9.4.1",
     "tailwindcss": "^1.1.4",
-    "vue": "^2.6.10",
+    "vue": "^2.6.11",
     "vue-codemirror-lite": "^1.0.4",
     "vue-recaptcha-v3": "^1.7.2"
   },
@@ -28,7 +28,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-vue": "^6.0.1",
     "vue-cli-plugin-netlify-lambda": "^0.1.1",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
     "root": true,
